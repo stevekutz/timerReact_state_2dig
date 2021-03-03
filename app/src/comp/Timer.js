@@ -4,7 +4,7 @@ import {
     Timer_div
 } from '../styled/timer_style';
 
-
+var dayjs = require('dayjs');
 
 // Alternative way to declare class component
 // import React from 'react';
@@ -37,17 +37,17 @@ class Timer extends Component {
         showTime: false,
         timerActive: 'false',
         buttonText: 'Start',
-        sec_OnesDigit: 0,
-        sec_TensDigit: 0,
-        min_OnesDigit: 0,
-        min_TensDigit: 0,
         fullTime: false,
 
-        secDigits: '00',
-        minDigits: '00',
+        secDigits: '44',
+        minDigits: '55',
         secTotal: 0,
         minTotal: 0,
         minAdjust: false,
+
+        // using datejs
+        dayTime: dayjs().startOf('day'),
+        
 
     }
     // ****************************************************
@@ -82,6 +82,8 @@ class Timer extends Component {
         this.setState({timerActive: false });
         
         console.log("timerActive", this.state.timerActive);
+
+        console.log("dayjs >> ", this.state.dayTime.format)
 
     }
 
@@ -259,6 +261,14 @@ class Timer extends Component {
 
     }
 
+
+    getDisplay = () => {
+        this.setState({secDigits: this.state.dayTime.format('ss')});
+        this.setState({minDigits: this.state.dayTime.format('mm')});
+    
+    }
+
+
     incMin = () => {
         console.log("incMin FIRED")
 
@@ -300,9 +310,12 @@ class Timer extends Component {
     }
 
     incSec = () => {
-        if (this.state.secDigits >= 0 && this.state.secDigits < 59) {
-            this.setState({secDigits: this.state.secDigits + 1})
-        }
+        // if (this.state.secDigits >= 0 && this.state.secDigits < 59) {
+        //     this.setState({secDigits: this.state.secDigits + 1})
+        // }
+    
+
+    
     }
 
     decSec = () => {
@@ -325,6 +338,18 @@ class Timer extends Component {
 
         return (
             <Timer_div>
+
+                <TimerDisplay 
+                    min_tens = {this.state.minDigits.toString().slice(-2,1)}
+                    min_ones = {this.state.minDigits.toString().slice(-1)}
+                    colon = ":"
+                    sec_tens = {this.state.secDigits.toString().slice(-2,1)}
+                    sec_ones = {this.state.secDigits.toString().slice(-1)}
+                    
+                />
+                <div>
+                    <button onClick = {this.getDisplay}> getDisplay </button>
+                </div>
 
                 <TimerDisplay 
                     min_tens = {this.state.minDigits.toString().slice(-2,1)}
