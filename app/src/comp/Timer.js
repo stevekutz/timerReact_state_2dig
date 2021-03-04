@@ -218,6 +218,7 @@ class Timer extends Component {
                     toggleTimer_handler = {this.toggleTimer}
                     startStopLabel = {this.state.startStopLabel}
                     reset_handler = {this.resetTimer}
+                    timerActive = {this.state.timerActive}
                 />
 
                 <p> dayjs {this.state.dayTime.format('mm:ss')}</p>
@@ -228,8 +229,7 @@ class Timer extends Component {
                     <p style = {{border: "1px solid blue", width: "300px", margin: "0 auto"}}> Date with seconds counter : {this.state.timeCounter.toLocaleTimeString()}</p>
                 </div>  
                 <div>
-                    <button onClick = {this.toggleTimer}> {this.state.startStopLabel} </button>
-                    <button onClick = {this.resetTimer } > Reset </button>
+
                 
                 </div>
 

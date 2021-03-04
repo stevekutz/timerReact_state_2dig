@@ -11,6 +11,7 @@ import {
     IncDecButton,
     DisplayDigitControls,
     DigitControlButton,
+    DigitControlButtonStartStop,
 
 } from '../styled/timer_display_style';
 
@@ -45,7 +46,10 @@ const TimerDisplay = (props) => {
                     </DisplayTimeContainerDiv>
                 
                     <DisplayDigitControls>
-                        <DigitControlButton onClick = {props.toggleTimer_handler}> {props.startStopLabel} </DigitControlButton>
+                        <DigitControlButtonStartStop 
+                            onClick = {props.toggleTimer_handler}
+                            timerActive = {props.timerActive}    
+                        > {props.startStopLabel} </DigitControlButtonStartStop>
                         <DigitControlButton onClick = {props.reset_handler}> Reset </DigitControlButton>
                     </DisplayDigitControls>
 

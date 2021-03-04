@@ -93,12 +93,43 @@ const DisplayDigitControls = styled.div`
 
 `
 
+// const DigitControlButton = styled.button`
+//     border: 2px solid dodgerblue;
+    
+
+//     ${props.timerActive ? "color: seagreen;" : "color: darkred;"}
+
 const DigitControlButton = styled.button`
-    border: 1px solid red;
+
+    border: 2px solid purple;
+    // border: 4px solid seagreen;
+    color: purple;
+
+
+
+
+
+    width: 30%;
+    padding: 2px;
+    font-size: 16px;
+    font-weight: bolder;
+    border-radius: 10px;
     background: lightblue;
+    outline-style: none;
+
+    :active {
+        border: 2px solid orange;
+    }
+
+`
+const DigitControlButtonStartStop = styled(DigitControlButton)`
+    color: ${props => props.timerActive ? 'palevioletred' : 'seagreen'};
+    background: ${props => props.timerActive ? 'pink' : '#C7FFEE'};
+    border: ${props => props.timerActive ? '4px solid palevioletred' : '4px solid seagreen'}
 
 `
 
+// border-color: ${props => props.timerActive ? '1px solid palevioletred' : '1px solid seagreen'}
 export {
     DisplayContainerDiv,
     DisplayTimeContainerDiv,
@@ -109,6 +140,7 @@ export {
     IncDecButton,
     DisplayDigitControls,
     DigitControlButton,
+    DigitControlButtonStartStop,
     
 
 };
