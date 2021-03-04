@@ -36,7 +36,7 @@ class Timer extends Component {
         timeCounter: new Date(),
         showTime: false,
         timerActive: 'false',
-        buttonText: 'Start',
+        startStopLabel: 'Start',
         fullTime: false,
 
         secDigits: '44',
@@ -150,9 +150,9 @@ class Timer extends Component {
 
     updateButtonStartStop = () => {
         if (this.state.timerActive) {
-            this.setState({buttonText: 'Start'})
+            this.setState({startStopLabel: 'Start'})
         } else {
-            this.setState({buttonText: 'Stop'})            
+            this.setState({startStopLabel: 'Stop'})            
         }
     }
 
@@ -214,6 +214,10 @@ class Timer extends Component {
                     
                     incSec_handler = {this.incSec}
                     decSec_handler = {this.decSec}
+
+                    toggleTimer_handler = {this.toggleTimer}
+                    startStopLabel = {this.state.startStopLabel}
+                    reset_handler = {this.resetTimer}
                 />
 
                 <p> dayjs {this.state.dayTime.format('mm:ss')}</p>
@@ -224,7 +228,7 @@ class Timer extends Component {
                     <p style = {{border: "1px solid blue", width: "300px", margin: "0 auto"}}> Date with seconds counter : {this.state.timeCounter.toLocaleTimeString()}</p>
                 </div>  
                 <div>
-                    <button onClick = {this.toggleTimer}> {this.state.buttonText} </button>
+                    <button onClick = {this.toggleTimer}> {this.state.startStopLabel} </button>
                     <button onClick = {this.resetTimer } > Reset </button>
                 
                 </div>

@@ -13,10 +13,10 @@ const DisplayContainerDiv = styled.div`
 
 `;
 
-const DisplayDigitContainerDiv = styled.div`
-    border: 5px solid purple;
+const DisplayTimeContainerDiv = styled.div`
+    border: 3px solid purple;
     
-    width: 40%;
+    width: 70px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -28,21 +28,59 @@ const DisplayDigitContainerDiv = styled.div`
 
 `
 
+const DisplayDigitPairContainer = styled.div`
+    border: 1px solid green;
+    width: 28px;
+    display: flex;
+`
+
 const DisplayColonDiv = styled.div`
     border: 1px solid seagreen; 
 
     width: 5px;
 `
 
+const DisplayIncDecContainer = styled.div`
+    border: 1px solid pink;
+
+    width: 30px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+`
+
 const DisplayDigitText = styled.div`
     border: 1px solid yellow;
     width: 12px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: lightgray;
     text-align: center;
-    // padding: 1px;
-    //margin: 4px;
 
 `
+const IncDecButton = styled.button`
+    border: 1px solid dodgerblue;
+    
+    background-color: lightgray;
+    width: 20px;
+    border-radius: 5px;
+    margin: 4px;
+    outline-style: none;
+
+
+    :active {
+        border: 1px solid orange;
+        color: red;
+    }
+`
+
+
 const DisplayDigitControls = styled.div`
     border: 1px solid blue;
     
@@ -55,15 +93,6 @@ const DisplayDigitControls = styled.div`
 
 `
 
-const DisplayDigitControlsSec = styled.div`
-    border: 1px solid blue;
-    
-    display: flex;
-    justify-content: end;
-    width: 8px;
-
-`
-
 const DigitControlButton = styled.button`
     border: 1px solid red;
     background: lightblue;
@@ -72,9 +101,12 @@ const DigitControlButton = styled.button`
 
 export {
     DisplayContainerDiv,
-    DisplayDigitContainerDiv,
+    DisplayTimeContainerDiv,
     DisplayColonDiv,
     DisplayDigitText,
+    DisplayDigitPairContainer,
+    DisplayIncDecContainer,
+    IncDecButton,
     DisplayDigitControls,
     DigitControlButton,
     
