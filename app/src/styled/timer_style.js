@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 
-const Timer_div = styled.div`
+const TimerDiv = styled.div`
     color: lightgrey;
 
 
@@ -10,7 +10,7 @@ const Timer_div = styled.div`
 `;
 
 export {
-    Timer_div,
+    TimerDiv,
 
 
 };

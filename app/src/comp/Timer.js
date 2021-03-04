@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import TimerDisplay from './TimerDisplay'
 import {
-    Timer_div
+    TimerDiv
 } from '../styled/timer_style';
 
 var dayjs = require('dayjs');
@@ -200,7 +200,7 @@ class Timer extends Component {
 
 
         return (
-            <Timer_div>
+            <TimerDiv>
 
                 <TimerDisplay 
                     min_tens = {this.state.dayTime.format('mm').slice(-2,1)}
@@ -239,7 +239,7 @@ class Timer extends Component {
                 <p>  Now date says: {this.state.currentDate} </p>
                 <button onClick = {this.findCurrentDate}> Click to get date {this.state.currentDate} </button>
                 <button onClick = {this.clearDate}> Clear Date </button>
-            </Timer_div>    
+            </TimerDiv>    
         )    
     }
 

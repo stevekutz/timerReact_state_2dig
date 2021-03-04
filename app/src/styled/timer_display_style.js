@@ -1,4 +1,5 @@
-import styled, {css} from 'styled-components';
+import styled, {css, createGlobalStyle} from 'styled-components';
+// import DigitalDismay from '../assets/fonts/DigitalDismay.otf';
 
 const DisplayContainerDiv = styled.div`
     
@@ -16,7 +17,7 @@ const DisplayContainerDiv = styled.div`
 const DisplayTimeContainerDiv = styled.div`
     border: 3px solid purple;
     
-    width: 70px;
+    width: 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -30,7 +31,7 @@ const DisplayTimeContainerDiv = styled.div`
 
 const DisplayDigitPairContainer = styled.div`
     border: 1px solid green;
-    width: 28px;
+    width: 50px;
     display: flex;
 `
 
@@ -43,7 +44,7 @@ const DisplayColonDiv = styled.div`
 const DisplayIncDecContainer = styled.div`
     border: 1px solid pink;
 
-    width: 30px;
+    width: 60px;
     height: 100px;
     display: flex;
     flex-direction: column;
@@ -55,13 +56,22 @@ const DisplayIncDecContainer = styled.div`
 
 const DisplayDigitText = styled.div`
     border: 1px solid yellow;
-    width: 12px;
-    height: 25px;
+    
+
+    width: 25px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: lightgray;
     text-align: center;
+
+    font-family: DigitalDismay;
+    font-size: 40px;
+    color: yellow;
+    
+    
+    }
 
 `
 const IncDecButton = styled.button`
@@ -130,7 +140,19 @@ const DigitControlButtonStartStop = styled(DigitControlButton)`
 
 `
 
-// border-color: ${props => props.timerActive ? '1px solid palevioletred' : '1px solid seagreen'}
+const GlobalStyles = createGlobalStyle`
+    @font-face {
+        font-family: DigitalDismay,  
+        src: url(DigitalDismay);
+        font-style: normal;
+        font-weight: 400;
+    
+    
+    }
+`
+
+
+
 export {
     DisplayContainerDiv,
     DisplayTimeContainerDiv,
@@ -142,6 +164,6 @@ export {
     DisplayDigitControls,
     DigitControlButton,
     DigitControlButtonStartStop,
-    
+    GlobalStyles,
 
 };
