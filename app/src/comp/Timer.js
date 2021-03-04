@@ -104,11 +104,8 @@ class Timer extends Component {
 
         if (count % 2 === 0) {
             countMSG = " even " + count.toString();
-            // console.log(countMSG)
-
         } else {
             countMSG = " ODD " + count.toString();
-            // console.log(countMSG)
         }
     
     }
@@ -139,8 +136,7 @@ class Timer extends Component {
         this.setState({
             currentDate: '',
             showTime: false,
-            })
-    
+            })    
     }
 
     toggleTimer = () => {
@@ -148,186 +144,47 @@ class Timer extends Component {
 
         this.setState({
                 timerActive: !this.state.timerActive,        
-            })
-        
+            })        
         this.updateButtonStartStop();
-
     }
 
     updateButtonStartStop = () => {
         if (this.state.timerActive) {
             this.setState({buttonText: 'Start'})
-            // this.countSeconds();
         } else {
-            this.setState({buttonText: 'Stop'})
-            
+            this.setState({buttonText: 'Stop'})            
         }
-
     }
-
 
     countSeconds = () => {
 
         if(this.state.timerActive) {
-            this.setState({secondsCount: this.state.secondsCount + 1})
             this.setState({dayTime: this.state.dayTime.add(1, 's')});                
-            this.assignDigits();
-            this.getDisplay();
-
-        } else {
-            this.setState({secondsCount: this.state.secondsCount });
-        }
-
-    }
-
-    assignDigits() {
-
-        // console.log("Assign Digits called");
-        console.log("secondsCount ==> ", this.state.secondsCount);
-
-        this.setState({secTotal: this.state.secondsCount - (60 * this.state.minTotal)});
-        console.log("minTotal ", this.state.minTotal);
-        console.log("secTotal => ", this.state.secTotal);
-
-        if( this.state.secTotal >= 0 && this.state.secTotal <= 9) {
-            this.setState({secDigits: '0' + this.state.secTotal.toString()});
-        
-        } else if (this.state.secTotal > 9 && this.state.secTotal <= 59) {
-            this.setState({secDigits: this.state.secTotal.toString()});
-
         } 
-        
-        if (this.state.secTotal >= 59) {
-            console.log("MIN");
-            this.setState({secTotal: 0})
-            this.setState({minTotal: this.state.minTotal + 1})
-            
-            if(this.state.minTotal <= 9) {
-                this.setState({minDigits: '0' + this.state.minTotal.toString()})
-            } else if (this.state.minTotal <= 59) {
-                this.setState({minDigits: this.state.minTotal.toString()})
-                this.setState({secTotal: 0})    
-            } else {
-                console.log(" Hour Reached ")
-            }
-        }  
-
-        this.setState({minAdjust: false});
-        console.log('minDigits ', this.state.minDigits);
-        
-
-
-        // // assign sec_Ones
-        // this.setState({sec_OnesDigit: this.state.secondsCount.toString().slice(-1)})
-
-        // // assign_sec_Tens
-        // if(this.state.secondsCount % 10 === 0) {
-
-        //         if (this.state.sec_TensDigit >= 0 && this.state.sec_TensDigit < 5) {
-        //             this.setState({ sec_TensDigit: this.state.sec_TensDigit + 1 })    
-        //             // this.setState({sec_TensDigit: this.})
-        //         } else {
-        //             this.setState({ sec_TensDigit: 0 })
-                    
-        //             if(this.state.min_OnesDigit >= 0 && this.state.min_OnesDigit < 9) {    
-        //                 this.setState({ min_OnesDigit: this.state.min_OnesDigit + 1 })
-        //             } else if (this.state.min_TensDigit < 5) {
-        //                 this.setState({ min_OnesDigit: 0})
-        //                 this.setState({ min_TensDigit: this.state.min_TensDigit + 1 })
-        //             } else if (this.state.min_TensDigit >= 5) {
-        //                 console.log(" over an hour !!!!! ")
-        //                 this.setState({fullTime: true})
-        //             }
-        //         } 
-        // }
-
     }
 
     resetTimer  = () => {
         this.setState({timerActive: false});
-        this.setState({secondsCount: 0 });
-        this.resetDisplayTimer();
+        this.setState({dayTime: dayjs().startOf('day')})
     }
-
-    resetDisplayTimer = () => {
-        // *** for single digit display
-        // this.setState({sec_OnesDigit: 0 });
-        // this.setState({sec_TensDigit: 0 });
-        // this.setState({min_OnesDigit: 0 });
-        // this.setState({min_TensDigit: 0 });
-
-        // *** for double digit display
-        this.setState({secDigits: '00'});
-        this.setState({minDigits: '00'});
-        this.setState({secTotal: 0});
-        this.setState({minTotal: 1});
-
-    }
-
-
-    getDisplay = () => {
-        this.setState({secDigits: this.state.dayTime.format('ss')});
-        this.setState({minDigits: this.state.dayTime.format('mm')});
-    
-    }
-
 
     incMin = () => {
-        console.log("incMin FIRED")
-
-
-
-        this.setState({ secondsCount: this.state.secondsCount + 60});  
-        // this.setState({ minTotal: this.state.minTotal + 1}); // does not increment first time
-
-
-
-        this.setState((prevState) => {
-            
-            return {minTotal: (prevState.minTotal + 1)};
-        
-        })
-
-
-        
-        
-         console.log(" minTotal updated to >>>>>> ", this.state.minTotal);
-
-        if(this.state.minTotal <= 9) {
-            this.setState({minDigits: '0' + this.state.minTotal.toString()})
-        } else if (this.state.minTotal <= 59) {
-            this.setState({minDigits: this.state.minTotal.toString()}); 
-        } else {
-            console.log(" Hour Reached ")
-        }
-
-        // this.setState({secTotal: this.state.secondsCount - (60 * this.state.minTotal)});
-        // this.assignDigits();      
-
+        this.setState({dayTime: this.state.dayTime.add(1, 'm')});
     }
 
     decMin = () => {
-        if (this.state.minDigits > 0 && this.state.minDigits <= 59) {
-            this.setState({minDigits: this.state.minDigits - 1})
-        }
+        this.setState({dayTime: this.state.dayTime.subtract(1,'m')});
     }
 
     incSec = () => {
-        // if (this.state.secDigits >= 0 && this.state.secDigits < 59) {
-        //     this.setState({secDigits: this.state.secDigits + 1})
-        // }
-    
         this.setState({dayTime: this.state.dayTime.add(1, 's')});
-        this.setState({secondsCount: this.state.secondsCount + 1});
     }
 
     decSec = () => {
-        // if (this.state.secDigits > 0 && this.state.secDigits <= 59) {
-        //     this.setState({secDigits: this.state.secDigits - 1})
-        // }
-        this.setState({dayTime: this.state.dayTime.subtract(1, 's')});
-        this.setState({secondsCount: this.state.secondsCount - 1});
+        this.setState({dayTime: this.state.dayTime.subtract(1, 's')}); 
     }
+
+
 
     render() {
         let intType;  
@@ -339,7 +196,7 @@ class Timer extends Component {
         // } 
 
     
-        this.state.secondsCount %2 === 0 ? intType = <p> even </p> : intType = <p> ODD </p>
+        this.state.dayTime.second() %2 === 0 ? intType = <p> even </p> : intType = <p> ODD </p>
 
 
         return (
@@ -351,30 +208,17 @@ class Timer extends Component {
                     colon = ":"
                     sec_tens = {this.state.dayTime.format('ss').slice(-2,1)}
                     sec_ones = {this.state.dayTime.format('ss').slice(-1)}
+                    
+                    incMin_handler = {this.incMin}
+                    decMin_handler = {this.decMin}
+                    
                     incSec_handler = {this.incSec}
                     decSec_handler = {this.decSec}
                 />
-                <div>
-                    <button onClick = {this.getDisplay}> getDisplay </button>
-                    <button onClick = {this.incSec}> Inc Sec </button>
-                    <button onClick = {this.decSec}> Dec Sec</button>
-                </div>
 
-                <p> dayjs {this.state.dayTime.format('ss')}</p>
-                <p> {this.state.intervalID} </p>
-
-
-
-                <TimerDisplay 
-                    min_tens = {this.state.minDigits.toString().slice(-2,1)}
-                    min_ones = {this.state.minDigits.toString().slice(-1)}
-                    colon = ":"
-                    sec_tens = {this.state.secDigits.toString().slice(-2,1)}
-                    sec_ones = {this.state.secDigits.toString().slice(-1)}
-                    incMin_handler = {this.incMin}
-                />
-
-
+                <p> dayjs {this.state.dayTime.format('mm:ss')}</p>
+                <div> {intType} </div>
+                
                 <p>  Current Date: {new Date().toDateString()}</p>
                 <div>
                     <p style = {{border: "1px solid blue", width: "300px", margin: "0 auto"}}> Date with seconds counter : {this.state.timeCounter.toLocaleTimeString()}</p>
@@ -386,11 +230,6 @@ class Timer extends Component {
                 </div>
 
 
-                <div>
-                    <p> Seconds counter: {this.state.secondsCount} </p>
-                
-                    {intType}
-                </div>
 
 
                 <p>  Now date says: {this.state.currentDate} </p>
@@ -403,14 +242,3 @@ class Timer extends Component {
 }
 
 export default Timer;
-
-
-/*
-    <TimerDisplay 
-        min_tens = {this.state.min_TensDigit.toString()}
-        min_ones = {this.state.min_OnesDigit.toString()}
-        colon = ":"
-        sec_tens = {this.state.sec_TensDigit.toString()}
-        sec_ones = {this.state.sec_OnesDigit.toString()}
-    />
-*/
