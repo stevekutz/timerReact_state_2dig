@@ -31,8 +31,8 @@ const TimerDisplay = (props) => {
                         <DigitControlButton onClick = {props.incMin_handler}> Inc Min </DigitControlButton>
                         <DigitControlButton> Dec Min </DigitControlButton>
 
-                        <DigitControlButton> Inc Sec </DigitControlButton>
-                        <DigitControlButton> Dec Sec </DigitControlButton>
+                        <DigitControlButton onClick = {props.incSec_handler}> Inc Sec </DigitControlButton>
+                        <DigitControlButton onClick = {props.decSec_handler}> Dec Sec </DigitControlButton>
                     </DisplayDigitControls>
 
                     

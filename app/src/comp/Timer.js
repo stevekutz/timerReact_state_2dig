@@ -74,6 +74,7 @@ class Timer extends Component {
         // setup for Date with seconds counter
         setInterval(() => {
             this.setState({timeCounter: new Date()});
+            // this.setState({dayTime: dayjs().startOf('day')})
         }, 1000)
         
         // setup for start/stop timer
@@ -168,8 +169,10 @@ class Timer extends Component {
     countSeconds = () => {
 
         if(this.state.timerActive) {
-            this.setState({secondsCount: this.state.secondsCount + 1})                
+            this.setState({secondsCount: this.state.secondsCount + 1})
+            this.setState({dayTime: this.state.dayTime.add(1, 's')});                
             this.assignDigits();
+            this.getDisplay();
 
         } else {
             this.setState({secondsCount: this.state.secondsCount });
@@ -314,14 +317,16 @@ class Timer extends Component {
         //     this.setState({secDigits: this.state.secDigits + 1})
         // }
     
-
-    
+        this.setState({dayTime: this.state.dayTime.add(1, 's')});
+        this.setState({secondsCount: this.state.secondsCount + 1});
     }
 
     decSec = () => {
-        if (this.state.secDigits > 0 && this.state.secDigits <= 59) {
-            this.setState({secDigits: this.state.secDigits - 1})
-        }
+        // if (this.state.secDigits > 0 && this.state.secDigits <= 59) {
+        //     this.setState({secDigits: this.state.secDigits - 1})
+        // }
+        this.setState({dayTime: this.state.dayTime.subtract(1, 's')});
+        this.setState({secondsCount: this.state.secondsCount - 1});
     }
 
     render() {
@@ -333,6 +338,7 @@ class Timer extends Component {
         //     intType = <p> ODD </p>
         // } 
 
+    
         this.state.secondsCount %2 === 0 ? intType = <p> even </p> : intType = <p> ODD </p>
 
 
@@ -340,16 +346,24 @@ class Timer extends Component {
             <Timer_div>
 
                 <TimerDisplay 
-                    min_tens = {this.state.minDigits.toString().slice(-2,1)}
-                    min_ones = {this.state.minDigits.toString().slice(-1)}
+                    min_tens = {this.state.dayTime.format('mm').slice(-2,1)}
+                    min_ones = {this.state.dayTime.format('mm').slice(-1)}
                     colon = ":"
-                    sec_tens = {this.state.secDigits.toString().slice(-2,1)}
-                    sec_ones = {this.state.secDigits.toString().slice(-1)}
-                    
+                    sec_tens = {this.state.dayTime.format('ss').slice(-2,1)}
+                    sec_ones = {this.state.dayTime.format('ss').slice(-1)}
+                    incSec_handler = {this.incSec}
+                    decSec_handler = {this.decSec}
                 />
                 <div>
                     <button onClick = {this.getDisplay}> getDisplay </button>
+                    <button onClick = {this.incSec}> Inc Sec </button>
+                    <button onClick = {this.decSec}> Dec Sec</button>
                 </div>
+
+                <p> dayjs {this.state.dayTime.format('ss')}</p>
+                <p> {this.state.intervalID} </p>
+
+
 
                 <TimerDisplay 
                     min_tens = {this.state.minDigits.toString().slice(-2,1)}
@@ -360,7 +374,6 @@ class Timer extends Component {
                     incMin_handler = {this.incMin}
                 />
 
-                <button onClick = {this.incMin}> Inc Min </button>
 
                 <p>  Current Date: {new Date().toDateString()}</p>
                 <div>
