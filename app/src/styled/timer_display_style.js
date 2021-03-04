@@ -76,7 +76,7 @@ const IncDecButton = styled.button`
 
     :active {
         border: 1px solid orange;
-        color: red;
+        color: #FF4019;
     }
 `
 
@@ -119,13 +119,14 @@ const DigitControlButton = styled.button`
 
     :active {
         border: 2px solid orange;
+
     }
 
 `
 const DigitControlButtonStartStop = styled(DigitControlButton)`
-    color: ${props => props.timerActive ? 'palevioletred' : 'seagreen'};
+    color: ${props => props.timerActive ? '#B30000' : 'seagreen'};
     background: ${props => props.timerActive ? 'pink' : '#C7FFEE'};
-    border: ${props => props.timerActive ? '4px solid palevioletred' : '4px solid seagreen'}
+    border: ${props => props.timerActive ? '2px solid palevioletred' : '2px solid seagreen'}
 
 `
 
