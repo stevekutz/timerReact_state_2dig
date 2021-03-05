@@ -1,13 +1,16 @@
 import './App.css';
 
+// import {
+//     GlobalStyles,
+
+// } from './styled/timer_display_style';
+
 
 import Timer from './comp/Timer';
 
 function App() {
   return (
     <div className="App">
-        
-        <h1> Updated Class Comp NOW </h1>
         <Timer />
 
 

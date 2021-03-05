@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import TimerDisplay from './TimerDisplay'
+import TimerDisplay from './TimerDisplay';
+import MenuBar from './MenuBar';
+
 import {
     TimerDiv
 } from '../styled/timer_style';
@@ -201,6 +203,8 @@ class Timer extends Component {
 
         return (
             <TimerDiv>
+                <MenuBar />
+
 
                 <TimerDisplay 
                     min_tens = {this.state.dayTime.format('mm').slice(-2,1)}

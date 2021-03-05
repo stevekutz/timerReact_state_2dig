@@ -140,16 +140,12 @@ const DigitControlButtonStartStop = styled(DigitControlButton)`
 
 `
 
-const GlobalStyles = createGlobalStyle`
-    @font-face {
-        font-family: DigitalDismay,  
-        src: url(DigitalDismay);
-        font-style: normal;
-        font-weight: 400;
-    
-    
-    }
-`
+// const GlobalStyles = createGlobalStyle`
+//     @font-face {
+//         font-family: 'Digital7-1e1Z';
+//         src: local(Digital7-1e1Z), url('./assets/fonts/Digital7-1e1Z.otf') format('truetype');
+//     }
+// `
 
 
 
@@ -164,6 +160,6 @@ export {
     DisplayDigitControls,
     DigitControlButton,
     DigitControlButtonStartStop,
-    GlobalStyles,
+    // GlobalStyles,
 
 };
