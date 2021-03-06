@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 //import './timerdisplay.css'
 
 import {
@@ -16,57 +16,63 @@ import {
 } from '../styled/timer_display_style';
 
 
-const TimerDisplay = (props) => {
+class TimerDisplay extends Component {
 
-    return (
-            <div>
+    render() {
+    
+    
+    
+        return (
+                <div>
+                    
+                    <DisplayContainerDiv>
+                        <DisplayTimeContainerDiv>
+                            <DisplayIncDecContainer>
+                                <IncDecButton onClick = {this.props.incMin_handler}> + </IncDecButton>
+                                <DisplayDigitPairContainer>
+                                    <DisplayDigitText> {this.props.min_tens} </DisplayDigitText>
+                                    <DisplayDigitText> {this.props.min_ones} </DisplayDigitText>                        
+                                </DisplayDigitPairContainer>
+                                <IncDecButton onClick = {this.props.decMin_handler}> - </IncDecButton>
+                            </DisplayIncDecContainer>
+
+                            <DisplayColonDiv> {this.props.colon} </DisplayColonDiv>
+
+                            <DisplayIncDecContainer>
+                                <IncDecButton onClick = {this.props.incSec_handler}> + </IncDecButton>
+                                <DisplayDigitPairContainer>
+                                    <DisplayDigitText> {this.props.sec_tens} </DisplayDigitText>
+                                    <DisplayDigitText> {this.props.sec_ones} </DisplayDigitText>
+                                </DisplayDigitPairContainer>
+                                <IncDecButton onClick = {this.props.decSec_handler}> - </IncDecButton>
+                            </DisplayIncDecContainer>
+                        
+                        
+                        </DisplayTimeContainerDiv>
+                    
+                        <DisplayDigitControls>
+                            <DigitControlButtonStartStop 
+                                onClick = {this.props.toggleTimer_handler}
+                                timerActive = {this.props.timerActive}    
+                            > {this.props.startStopLabel} </DigitControlButtonStartStop>
+                            <DigitControlButton onClick = {this.props.reset_handler}> Reset </DigitControlButton>
+                        </DisplayDigitControls>
+
+                        
+
+                        
+                    
+                    </DisplayContainerDiv>
                 
-                <DisplayContainerDiv>
-                    <DisplayTimeContainerDiv>
-                        <DisplayIncDecContainer>
-                            <IncDecButton onClick = {props.incMin_handler}> + </IncDecButton>
-                            <DisplayDigitPairContainer>
-                                <DisplayDigitText> {props.min_tens} </DisplayDigitText>
-                                <DisplayDigitText> {props.min_ones} </DisplayDigitText>                        
-                            </DisplayDigitPairContainer>
-                            <IncDecButton onClick = {props.decMin_handler}> - </IncDecButton>
-                        </DisplayIncDecContainer>
-
-                        <DisplayColonDiv> {props.colon} </DisplayColonDiv>
-
-                        <DisplayIncDecContainer>
-                            <IncDecButton onClick = {props.incSec_handler}> + </IncDecButton>
-                            <DisplayDigitPairContainer>
-                                <DisplayDigitText> {props.sec_tens} </DisplayDigitText>
-                                <DisplayDigitText> {props.sec_ones} </DisplayDigitText>
-                            </DisplayDigitPairContainer>
-                            <IncDecButton onClick = {props.decSec_handler}> - </IncDecButton>
-                        </DisplayIncDecContainer>
-                    
-                    
-                    </DisplayTimeContainerDiv>
                 
-                    <DisplayDigitControls>
-                        <DigitControlButtonStartStop 
-                            onClick = {props.toggleTimer_handler}
-                            timerActive = {props.timerActive}    
-                        > {props.startStopLabel} </DigitControlButtonStartStop>
-                        <DigitControlButton onClick = {props.reset_handler}> Reset </DigitControlButton>
-                    </DisplayDigitControls>
-
-                    
-
-                    
                 
-                </DisplayContainerDiv>
-            
-            
-            
-            </div>
-
-    )
+                </div>
 
 
+
+        )
+
+    }
 }
 
 
